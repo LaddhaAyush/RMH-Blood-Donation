@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blood Donation Registration | Save Lives Today</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="bg-animation">
+        <div class="blood-drop drop-1"></div>
+        <div class="blood-drop drop-2"></div>
+        <div class="blood-drop drop-3"></div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo">
+                <div class="heart-icon pulse">❤️</div>
+                <h1>Blood Donation Drive</h1>
+            </div>
+            <p class="tagline">Your donation can save up to 3 lives</p>
+        </header>
+
+        <!-- Registration Form -->
+        <main class="form-container">
+            <div class="form-card">
+                <div class="form-header">
+                    <div class="blood-drop-icon">🩸</div>
+                    <h2>Donor Registration</h2>
+                    <p>Join our mission to save lives</p>
+                </div>
+
+                <form id="donorForm" class="donor-form">
+                    <!-- Full Name -->
+                    <div class="form-group">
+                        <label for="fullName">
+                            <span class="label-icon">👤</span>
+                            Full Name
+                        </label>
+                        <input 
+                            type="text" 
+                            id="fullName" 
+                            name="fullName" 
+                            placeholder="Enter your full name"
+                            required
+                            minlength="2"
+                            autocomplete="name"
+                        >
+                        <span class="error-message" id="fullNameError"></span>
+                    </div>
+
+                    <!-- Blood Group -->
+                    <div class="form-group">
+                        <label for="bloodGroup">
+                            <span class="label-icon">🩸</span>
+                            Blood Group
+                        </label>
+                        <select id="bloodGroup" name="bloodGroup" required>
+                            <option value="">Select your blood group</option>
+                            <option value="A+">A+ (A Positive)</option>
+                            <option value="A-">A- (A Negative)</option>
+                            <option value="B+">B+ (B Positive)</option>
+                            <option value="B-">B- (B Negative)</option>
+                            <option value="AB+">AB+ (AB Positive)</option>
+                            <option value="AB-">AB- (AB Negative)</option>
+                            <option value="O+">O+ (O Positive)</option>
+                            <option value="O-">O- (O Negative)</option>
+                        </select>
+                        <span class="error-message" id="bloodGroupError"></span>
+                    </div>
+
+                    <!-- Age -->
+                    <div class="form-group">
+                        <label for="age">
+                            <span class="label-icon">📅</span>
+                            Age
+                        </label>
+                        <input 
+                            type="number" 
+                            id="age" 
+                            name="age" 
+                            placeholder="Enter your age"
+                            required
+                            min="18"
+                            max="65"
+                        >
+                        <span class="hint">Must be 18 years or older</span>
+                        <span class="error-message" id="ageError"></span>
+                    </div>
+
+                    <!-- Year -->
+                    <div class="form-group">
+                        <label for="year">
+                            <span class="label-icon">🎓</span>
+                            Academic Year
+                        </label>
+                        <select id="year" name="year" required>
+                            <option value="">Select your year</option>
+                            <option value="FY">FY (First Year)</option>
+                            <option value="SY">SY (Second Year)</option>
+                            <option value="TY">TY (Third Year)</option>
+                            <option value="Final Year">Final Year</option>
+                        </select>
+                        <span class="error-message" id="yearError"></span>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="submit-btn" id="submitBtn">
+                        <span class="btn-text">Donate Blood</span>
+                        <span class="btn-icon">❤️</span>
+                        <div class="btn-loader" id="btnLoader"></div>
+                    </button>
+                </form>
+
+                <!-- Form Message -->
+                <div class="form-message" id="formMessage"></div>
+            </div>
+        </main>
+
+        <!-- Navigation -->
+        <nav class="nav-links">
+            <a href="/dashboard" class="nav-link">
+                <span>📊</span> View Dashboard
+            </a>
+        </nav>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>"A single drop of blood can make a huge difference"</p>
+            <p class="copyright">© 2026 Blood Donation Drive. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <script src="script.js?v=8"></script>
+</body>
+</html>

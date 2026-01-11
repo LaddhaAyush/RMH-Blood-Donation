@@ -1,0 +1,1513 @@
+/**
+ * Blood Donation Event Website
+ * Modern, Clean, Red-Themed CSS Styles
+ */
+
+/* ============================================
+   CSS VARIABLES & ROOT STYLES
+   ============================================ */
+:root {
+    /* Primary Colors */
+    --primary-red: #DC143C;
+    --primary-red-dark: #B91030;
+    --primary-red-light: #FF4D6A;
+    --accent-red: #FF6B6B;
+    
+    /* Secondary Colors */
+    --white: #FFFFFF;
+    --off-white: #F8F9FA;
+    --light-gray: #E9ECEF;
+    --medium-gray: #6C757D;
+    --dark-gray: #343A40;
+    --black: #212529;
+    
+    /* Gradient Colors */
+    --gradient-primary: linear-gradient(135deg, #DC143C 0%, #FF4D6A 100%);
+    --gradient-dark: linear-gradient(135deg, #B91030 0%, #DC143C 100%);
+    --gradient-light: linear-gradient(135deg, #FFF5F5 0%, #FFE5E5 100%);
+    --gradient-bg: linear-gradient(180deg, #FFF5F5 0%, #FFFFFF 50%, #FFF5F5 100%);
+    
+    /* Shadows */
+    --shadow-sm: 0 2px 4px rgba(220, 20, 60, 0.1);
+    --shadow-md: 0 4px 12px rgba(220, 20, 60, 0.15);
+    --shadow-lg: 0 8px 30px rgba(220, 20, 60, 0.2);
+    --shadow-xl: 0 15px 50px rgba(220, 20, 60, 0.25);
+    
+    /* Typography */
+    --font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-xxl: 3rem;
+    
+    /* Border Radius */
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 20px;
+    --radius-full: 50%;
+    
+    /* Transitions */
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+    --transition-slow: 0.5s ease;
+}
+
+/* ============================================
+   RESET & BASE STYLES
+   ============================================ */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-family);
+    background: var(--gradient-bg);
+    color: var(--dark-gray);
+    line-height: 1.6;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ============================================
+   BACKGROUND ANIMATIONS
+   ============================================ */
+.bg-animation {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.blood-drop {
+    position: absolute;
+    width: 20px;
+    height: 30px;
+    background: var(--primary-red);
+    border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+    opacity: 0.1;
+    animation: dropFall 15s infinite linear;
+}
+
+.drop-1 {
+    left: 10%;
+    animation-delay: 0s;
+    animation-duration: 18s;
+}
+
+.drop-2 {
+    left: 30%;
+    animation-delay: 3s;
+    animation-duration: 15s;
+}
+
+.drop-3 {
+    left: 70%;
+    animation-delay: 6s;
+    animation-duration: 20s;
+}
+
+.drop-4 {
+    left: 90%;
+    animation-delay: 9s;
+    animation-duration: 16s;
+}
+
+@keyframes dropFall {
+    0% {
+        transform: translateY(-100px) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.1;
+    }
+    90% {
+        opacity: 0.1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* ============================================
+   CONTAINER & LAYOUT
+   ============================================ */
+.container {
+    position: relative;
+    z-index: 1;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: var(--spacing-xl);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ============================================
+   HEADER STYLES
+   ============================================ */
+.header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+    animation: fadeInDown 0.8s ease-out;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
+}
+
+.heart-icon {
+    font-size: 2.5rem;
+}
+
+.logo h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-red);
+    text-shadow: 2px 2px 4px rgba(220, 20, 60, 0.1);
+}
+
+.tagline {
+    font-size: 1.1rem;
+    color: var(--medium-gray);
+    font-weight: 400;
+}
+
+/* Pulse Animation */
+.pulse {
+    animation: pulse 2s infinite;
+}
+
+.pulse-strong {
+    animation: pulseStrong 1.5s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+@keyframes pulseStrong {
+    0%, 100% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(1.2);
+    }
+    50% {
+        transform: scale(1);
+    }
+    75% {
+        transform: scale(1.15);
+    }
+}
+
+/* ============================================
+   FORM STYLES
+   ============================================ */
+.form-container {
+    width: 100%;
+    max-width: 480px;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.form-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: var(--spacing-xl);
+    border: 1px solid rgba(220, 20, 60, 0.1);
+}
+
+.form-header {
+    text-align: center;
+    margin-bottom: var(--spacing-xl);
+}
+
+.blood-drop-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-sm);
+    animation: bounce 2s infinite;
+}
+
+@keyframes bounce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.form-header h2 {
+    font-size: 1.5rem;
+    color: var(--primary-red);
+    margin-bottom: var(--spacing-xs);
+}
+
+.form-header p {
+    color: var(--medium-gray);
+    font-size: 0.95rem;
+}
+
+.donor-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.form-group label {
+    font-weight: 500;
+    color: var(--dark-gray);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+}
+
+.label-icon {
+    font-size: 1rem;
+}
+
+.form-group input,
+.form-group select {
+    width: 100%;
+    padding: var(--spacing-md);
+    border: 2px solid var(--light-gray);
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    font-size: 1rem;
+    transition: var(--transition-fast);
+    background: var(--white);
+}
+
+.form-group input:focus,
+.form-group select:focus {
+    outline: none;
+    border-color: var(--primary-red);
+    box-shadow: 0 0 0 3px rgba(220, 20, 60, 0.1);
+}
+
+.form-group input::placeholder {
+    color: var(--medium-gray);
+}
+
+.form-group .hint {
+    font-size: 0.8rem;
+    color: var(--medium-gray);
+    margin-top: var(--spacing-xs);
+}
+
+.error-message {
+    font-size: 0.85rem;
+    color: var(--primary-red);
+    display: none;
+    margin-top: var(--spacing-xs);
+}
+
+.error-message.show {
+    display: block;
+    animation: shake 0.3s ease;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    75% { transform: translateX(5px); }
+}
+
+.form-group.error input,
+.form-group.error select {
+    border-color: var(--primary-red);
+    background: #FFF5F5;
+}
+
+/* Submit Button */
+.submit-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    width: 100%;
+    padding: var(--spacing-md) var(--spacing-xl);
+    background: var(--gradient-primary);
+    color: var(--white);
+    border: none;
+    border-radius: var(--radius-sm);
+    font-family: inherit;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-normal);
+    overflow: hidden;
+    margin-top: var(--spacing-md);
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-lg);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+}
+
+.submit-btn.loading {
+    pointer-events: none;
+    opacity: 0.8;
+}
+
+.submit-btn.loading .btn-text,
+.submit-btn.loading .btn-icon {
+    visibility: hidden;
+}
+
+.btn-loader {
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top-color: var(--white);
+    border-radius: 50%;
+    display: none;
+}
+
+.submit-btn.loading .btn-loader {
+    display: block;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Form Message */
+.form-message {
+    margin-top: var(--spacing-md);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-sm);
+    text-align: center;
+    display: none;
+}
+
+.form-message.success {
+    display: block;
+    background: #D4EDDA;
+    color: #155724;
+    border: 1px solid #C3E6CB;
+}
+
+.form-message.error {
+    display: block;
+    background: #F8D7DA;
+    color: #721C24;
+    border: 1px solid #F5C6CB;
+}
+
+/* ============================================
+   NAVIGATION LINKS
+   ============================================ */
+.nav-links {
+    margin-top: var(--spacing-xl);
+    display: flex;
+    gap: var(--spacing-md);
+}
+
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-sm) var(--spacing-lg);
+    background: var(--white);
+    color: var(--primary-red);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    font-weight: 500;
+    border: 2px solid var(--primary-red);
+    transition: var(--transition-normal);
+}
+
+.nav-link:hover {
+    background: var(--primary-red);
+    color: var(--white);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.nav-link.primary-link {
+    background: var(--gradient-primary);
+    color: var(--white);
+    border: none;
+}
+
+.nav-link.primary-link:hover {
+    box-shadow: var(--shadow-lg);
+}
+
+/* ============================================
+   FOOTER STYLES
+   ============================================ */
+.footer {
+    margin-top: auto;
+    padding-top: var(--spacing-xl);
+    text-align: center;
+}
+
+.footer p {
+    color: var(--medium-gray);
+    font-size: 0.95rem;
+}
+
+.footer .copyright {
+    font-size: 0.8rem;
+    margin-top: var(--spacing-sm);
+}
+
+/* ============================================
+   THANK YOU PAGE STYLES
+   ============================================ */
+.thank-you-page {
+    background: var(--gradient-light);
+}
+
+.thank-you-container {
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.thank-you-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    padding: var(--spacing-xxl);
+    text-align: center;
+    max-width: 500px;
+    width: 100%;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.big-heart {
+    font-size: 5rem;
+    margin-bottom: var(--spacing-lg);
+    display: inline-block;
+}
+
+.thank-you-title {
+    font-size: 1.8rem;
+    color: var(--primary-red);
+    margin-bottom: var(--spacing-xl);
+}
+
+.donor-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+    background: var(--gradient-light);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.donor-detail {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.detail-label {
+    font-size: 0.85rem;
+    color: var(--medium-gray);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.detail-value {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--dark-gray);
+}
+
+.blood-badge {
+    display: inline-block;
+    background: var(--primary-red);
+    color: var(--white);
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: var(--radius-sm);
+    font-size: 1.2rem;
+}
+
+.appreciation-message {
+    margin-bottom: var(--spacing-xl);
+    font-size: 1.1rem;
+    color: var(--dark-gray);
+}
+
+.appreciation-message p {
+    margin-bottom: var(--spacing-sm);
+}
+
+/* Countdown Section */
+.countdown-section {
+    margin-bottom: var(--spacing-lg);
+}
+
+.redirect-text {
+    color: var(--medium-gray);
+    font-size: 0.9rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.countdown-timer {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-md);
+}
+
+.countdown-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--primary-red);
+    animation: pulse 1s infinite;
+}
+
+.countdown-label {
+    font-size: 1rem;
+    color: var(--medium-gray);
+}
+
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: var(--light-gray);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--gradient-primary);
+    width: 100%;
+    transition: width 1s linear;
+}
+
+.skip-btn {
+    display: inline-block;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    color: var(--primary-red);
+    text-decoration: none;
+    font-weight: 500;
+    border: 2px solid var(--primary-red);
+    border-radius: var(--radius-sm);
+    transition: var(--transition-normal);
+}
+
+.skip-btn:hover {
+    background: var(--primary-red);
+    color: var(--white);
+}
+
+/* Floating Hearts */
+.floating-hearts {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+}
+
+.heart {
+    position: absolute;
+    font-size: 1.5rem;
+    animation: floatUp 6s infinite ease-in-out;
+    opacity: 0.5;
+}
+
+.h1 { left: 10%; animation-delay: 0s; }
+.h2 { left: 25%; animation-delay: 1s; }
+.h3 { left: 50%; animation-delay: 2s; }
+.h4 { left: 75%; animation-delay: 3s; }
+.h5 { left: 90%; animation-delay: 4s; }
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(-100px) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+.quote-section {
+    margin-top: var(--spacing-xl);
+    text-align: center;
+}
+
+.quote {
+    font-style: italic;
+    color: var(--medium-gray);
+    font-size: 1rem;
+}
+
+/* ============================================
+   DASHBOARD PAGE STYLES
+   ============================================ */
+.dashboard-page {
+    background: linear-gradient(180deg, #FFF5F5 0%, #FFFFFF 30%, #FFF5F5 100%);
+}
+
+.dashboard-container {
+    max-width: 900px;
+    padding: var(--spacing-md) var(--spacing-xl);
+}
+
+.dashboard-header {
+    text-align: center;
+    margin-bottom: var(--spacing-lg);
+    animation: fadeInDown 0.8s ease-out;
+}
+
+.dashboard-header .logo h1 {
+    font-size: 1.6rem;
+}
+
+.dashboard-header .tagline {
+    font-size: 0.9rem;
+}
+
+.stats-section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.stats-row {
+    display: flex;
+    gap: var(--spacing-lg);
+    width: 100%;
+    align-items: stretch;
+}
+
+.stats-row .stats-card {
+    flex: 1;
+}
+
+.stats-card {
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: var(--spacing-lg);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    animation: fadeInUp 0.8s ease-out;
+}
+
+.stats-card.main-stat {
+    padding: var(--spacing-lg) var(--spacing-xl);
+    border: 2px solid rgba(220, 20, 60, 0.1);
+}
+
+.stat-icon {
+    margin-bottom: var(--spacing-sm);
+}
+
+.stat-icon .blood-bag {
+    font-size: 2.5rem;
+    display: inline-block;
+    animation: bounce 2s infinite;
+}
+
+.stat-icon.small {
+    font-size: 1.5rem;
+}
+
+.stat-label {
+    font-size: 0.9rem;
+    color: var(--medium-gray);
+    margin-bottom: var(--spacing-sm);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stat-number-container {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    margin-bottom: var(--spacing-sm);
+}
+
+.stat-number-container .blood-bag {
+    font-size: 4rem;
+    animation: bounce 2s infinite;
+}
+
+.stat-number {
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--primary-red);
+    line-height: 1;
+}
+
+.stat-number.large-counter {
+    font-size: 5rem;
+}
+
+.stats-card.secondary-stat .stat-number {
+    font-size: 4.5rem;
+}
+
+.stat-unit {
+    font-size: 1.2rem;
+    color: var(--medium-gray);
+    font-weight: 500;
+}
+
+.stat-subtext {
+    color: var(--medium-gray);
+    font-size: 0.85rem;
+}
+
+/* Heartbeat Line Animation */
+.stat-decoration {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 40px;
+    overflow: hidden;
+}
+
+.heartbeat-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 200%;
+    height: 30px;
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 40'%3E%3Cpath d='M0,20 L30,20 L35,10 L40,30 L50,5 L60,35 L70,20 L100,20 L130,20 L135,10 L140,30 L150,5 L160,35 L170,20 L200,20' stroke='%23DC143C' stroke-width='2' fill='none' opacity='0.2'/%3E%3C/svg%3E") repeat-x;
+    animation: heartbeatScroll 4s linear infinite;
+}
+
+@keyframes heartbeatScroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+.last-updated {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    color: var(--medium-gray);
+    font-size: 0.8rem;
+}
+
+.update-icon {
+    animation: spin 2s linear infinite;
+}
+
+/* ============================================
+   SLOGANS SECTION
+   ============================================ */
+.slogans-section {
+    width: 100%;
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+}
+
+.slogans-title {
+    font-size: 1.2rem;
+    color: var(--primary-red);
+    margin-bottom: var(--spacing-sm);
+}
+
+.slogans-carousel {
+    position: relative;
+    height: 80px;
+    overflow: hidden;
+}
+
+.slogan-card {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-md);
+    background: var(--white);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 0.5s ease;
+}
+
+.slogan-card.active {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.slogan-card.exit {
+    opacity: 0;
+    transform: translateX(-100%);
+}
+
+.slogan-icon {
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-xs);
+}
+
+.slogan-text {
+    font-size: 1rem;
+    color: var(--dark-gray);
+    font-style: italic;
+}
+
+.slogan-indicators {
+    display: flex;
+    justify-content: center;
+    gap: var(--spacing-sm);
+    margin-top: var(--spacing-md);
+}
+
+.indicator {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: var(--light-gray);
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.indicator.active {
+    background: var(--primary-red);
+    transform: scale(1.2);
+}
+
+/* ============================================
+   RECENT DONORS SECTION
+   ============================================ */
+.recent-donors-section {
+    width: 100%;
+    margin-bottom: var(--spacing-md);
+}
+
+.section-title {
+    font-size: 1.1rem;
+    color: var(--primary-red);
+    text-align: center;
+    margin-bottom: var(--spacing-sm);
+}
+
+.donors-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    justify-content: center;
+}
+
+.donor-item {
+    display: inline-flex;
+    align-items: center;
+    padding: var(--spacing-xs) var(--spacing-md);
+    background: var(--white);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-sm);
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.donor-item:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.donor-name {
+    font-weight: 500;
+    color: var(--dark-gray);
+    font-size: 0.9rem;
+}
+
+.donor-blood-type {
+    background: var(--primary-red);
+    color: var(--white);
+    padding: var(--spacing-xs) var(--spacing-sm);
+    border-radius: var(--radius-sm);
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.loading-donors {
+    text-align: center;
+    padding: var(--spacing-xl);
+    color: var(--medium-gray);
+}
+
+.no-donors {
+    text-align: center;
+    padding: var(--spacing-xl);
+    color: var(--medium-gray);
+    font-style: italic;
+}
+
+.dashboard-footer {
+    margin-top: var(--spacing-md);
+    padding-top: var(--spacing-sm);
+}
+
+.footer-message {
+    font-size: 1rem;
+    color: var(--primary-red);
+    font-weight: 500;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ============================================
+   RESPONSIVE DESIGN
+   ============================================ */
+@media (max-width: 768px) {
+    :root {
+        --spacing-xl: 1.5rem;
+        --spacing-xxl: 2rem;
+    }
+
+    .container {
+        padding: var(--spacing-md);
+    }
+
+    .logo h1 {
+        font-size: 1.5rem;
+    }
+
+    .heart-icon {
+        font-size: 2rem;
+    }
+
+    .form-card {
+        padding: var(--spacing-lg);
+    }
+
+    .blood-drop-icon {
+        font-size: 2.5rem;
+    }
+
+    .thank-you-card {
+        padding: var(--spacing-xl);
+    }
+
+    .big-heart {
+        font-size: 3.5rem;
+    }
+
+    .thank-you-title {
+        font-size: 1.4rem;
+    }
+
+    .countdown-number {
+        font-size: 2.5rem;
+    }
+
+    .stat-number {
+        font-size: 3.5rem;
+    }
+
+    .stat-number.large-counter {
+        font-size: 4.5rem;
+    }
+
+    .stats-card.secondary-stat .stat-number {
+        font-size: 2.5rem;
+    }
+
+    .stat-icon .blood-bag {
+        font-size: 3rem;
+    }
+
+    .slogan-text {
+        font-size: 1rem;
+    }
+
+    .donor-item {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+        text-align: center;
+    }
+
+    .stats-row {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        flex-direction: column;
+        gap: var(--spacing-sm);
+    }
+
+    .logo h1 {
+        font-size: 1.3rem;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .nav-link {
+        justify-content: center;
+    }
+
+    .donor-info {
+        padding: var(--spacing-md);
+    }
+
+    .slogans-carousel {
+        height: 180px;
+    }
+}
+
+/* ============================================
+   UTILITY CLASSES
+   ============================================ */
+.hidden {
+    display: none !important;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-red {
+    color: var(--primary-red);
+}
+
+.mb-md {
+    margin-bottom: var(--spacing-md);
+}
+
+.mt-md {
+    margin-top: var(--spacing-md);
+}
+
+/* ============================================
+   THANK YOU POPUP MODAL
+   ============================================ */
+.thank-you-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.4s ease;
+}
+
+.thank-you-popup.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.popup-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(220, 20, 60, 0.92);
+    backdrop-filter: blur(10px);
+}
+
+.popup-content {
+    position: relative;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    padding: var(--spacing-xl) var(--spacing-xxl);
+    text-align: center;
+    max-width: 480px;
+    width: 90%;
+    box-shadow: var(--shadow-xl);
+    animation: popupSlideIn 0.5s ease-out;
+}
+
+@keyframes popupSlideIn {
+    from {
+        transform: translateY(-50px) scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+}
+
+.floating-hearts-popup {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+}
+
+.floating-hearts-popup .heart {
+    position: absolute;
+    font-size: 1.2rem;
+    animation: floatUp 4s infinite ease-in-out;
+    opacity: 0.6;
+}
+
+.floating-hearts-popup .h1 { left: 10%; top: 85%; animation-delay: 0s; }
+.floating-hearts-popup .h2 { left: 50%; top: 90%; animation-delay: 1s; }
+.floating-hearts-popup .h3 { left: 85%; top: 85%; animation-delay: 2s; }
+
+.popup-content .big-heart {
+    font-size: 4.5rem;
+    display: inline-block;
+    margin-bottom: var(--spacing-md);
+}
+
+.popup-title {
+    font-size: 1.5rem;
+    color: var(--primary-red);
+    margin-bottom: var(--spacing-lg);
+    font-weight: 600;
+}
+
+.popup-donor-info {
+    display: flex;
+    gap: var(--spacing-xl);
+    justify-content: center;
+    padding: var(--spacing-lg);
+    background: var(--gradient-light);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+.popup-detail {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-xs);
+}
+
+.popup-label {
+    font-size: 0.75rem;
+    color: var(--medium-gray);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.popup-value {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--dark-gray);
+}
+
+.popup-blood-badge {
+    background: var(--primary-red);
+    color: var(--white) !important;
+    padding: 4px 14px;
+    border-radius: var(--radius-sm);
+}
+
+.popup-message {
+    font-size: 1rem;
+    color: var(--dark-gray);
+    margin-bottom: var(--spacing-lg);
+}
+
+.popup-countdown {
+    margin-top: var(--spacing-md);
+}
+
+.popup-redirect-text {
+    font-size: 0.85rem;
+    color: var(--medium-gray);
+    margin-bottom: var(--spacing-sm);
+}
+
+.popup-timer {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: var(--spacing-xs);
+    margin-bottom: var(--spacing-md);
+}
+
+.popup-countdown-number {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--primary-red);
+    animation: pulse 1s infinite;
+}
+
+.popup-countdown-label {
+    font-size: 0.9rem;
+    color: var(--medium-gray);
+}
+
+.popup-progress-bar {
+    width: 100%;
+    height: 8px;
+    background: var(--light-gray);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.popup-progress-fill {
+    height: 100%;
+    background: var(--gradient-primary);
+    width: 100%;
+    transition: width 1s linear;
+}
+
+@media (max-width: 480px) {
+    .popup-content {
+        padding: var(--spacing-lg);
+    }
+
+    .popup-donor-info {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    .popup-title {
+        font-size: 1.3rem;
+    }
+
+    .popup-content .big-heart {
+        font-size: 3.5rem;
+    }
+}
+
+/* ============================================
+   THANK YOU OVERLAY (dashboard.html)
+   ============================================ */
+.thank-you-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-light);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.thank-you-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.thank-you-overlay .bg-animation {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.thank-you-overlay .floating-hearts {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.thank-you-overlay .heart {
+    position: absolute;
+    font-size: 2rem;
+    animation: floatUp 6s ease-in-out infinite;
+    opacity: 0.7;
+}
+
+.thank-you-overlay .h1 { left: 10%; animation-delay: 0s; }
+.thank-you-overlay .h2 { left: 25%; animation-delay: 1s; }
+.thank-you-overlay .h3 { left: 50%; animation-delay: 2s; }
+.thank-you-overlay .h4 { left: 75%; animation-delay: 1.5s; }
+.thank-you-overlay .h5 { left: 90%; animation-delay: 0.5s; }
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.7;
+    }
+    90% {
+        opacity: 0.7;
+    }
+    100% {
+        transform: translateY(-100px) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+.thank-you-overlay .thank-you-card {
+    position: relative;
+    z-index: 2;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-xl);
+    padding: var(--spacing-xxl);
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    animation: popIn 0.5s ease-out;
+}
+
+@keyframes popIn {
+    0% {
+        transform: scale(0.5);
+        opacity: 0;
+    }
+    70% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.thank-you-overlay .big-heart {
+    font-size: 5rem;
+    margin-bottom: var(--spacing-lg);
+    display: inline-block;
+    animation: heartbeat 1s ease infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    25% { transform: scale(1.1); }
+    50% { transform: scale(1); }
+    75% { transform: scale(1.1); }
+}
+
+.thank-you-overlay .thank-you-title {
+    font-size: 1.8rem;
+    color: var(--primary-red);
+    margin-bottom: var(--spacing-xl);
+}
+
+.thank-you-overlay .donor-info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    padding: var(--spacing-lg);
+    background: var(--gradient-light);
+    border-radius: var(--radius-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.thank-you-overlay .quote-section {
+    margin-top: var(--spacing-lg);
+    padding-top: var(--spacing-lg);
+    border-top: 1px solid var(--light-gray);
+}
+
+.thank-you-overlay .quote {
+    font-style: italic;
+    color: var(--medium-gray);
+    font-size: 1rem;
+}
+
+@media (max-width: 480px) {
+    .thank-you-overlay .thank-you-card {
+        padding: var(--spacing-xl);
+        margin: var(--spacing-md);
+    }
+
+    .thank-you-overlay .thank-you-title {
+        font-size: 1.4rem;
+    }
+
+    .thank-you-overlay .big-heart {
+        font-size: 4rem;
+    }
+}

@@ -1,0 +1,24 @@
+{
+  "name": "blood-donation-website",
+  "version": "1.0.0",
+  "description": "Blood Donation Event Website with registration, thank-you page, and live dashboard",
+  "main": "server/server.js",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "node server/server.js"
+  },
+  "keywords": [
+    "blood-donation",
+    "healthcare",
+    "ngo",
+    "express",
+    "mongodb"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2",
+    "mongoose": "^8.0.0",
+    "cors": "^2.8.5"
+  }
+}

@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | Blood Donation Drive</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="dashboard-page">
+    <!-- Background Animation -->
+    <div class="bg-animation">
+        <div class="blood-drop drop-1"></div>
+        <div class="blood-drop drop-2"></div>
+        <div class="blood-drop drop-3"></div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container dashboard-container">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <div class="logo">
+                <div class="heart-icon pulse">❤️</div>
+                <h1>Blood Donation Dashboard</h1>
+            </div>
+        </header>
+
+        <!-- Stats Section -->
+        <main class="stats-section">
+            <!-- Stats Row - Side by Side -->
+            <div class="stats-row">
+                <!-- Main Counter Card -->
+                <div class="stats-card main-stat">
+                    <div class="stat-content">
+                        <h2 class="stat-label">Total number of donor</h2>
+                        <div class="stat-number-container">
+                            <span class="blood-bag">🩸</span>
+                            <span class="stat-number large-counter" id="totalUnits">0</span>
+                        </div>
+                    </div>
+                    <div class="stat-decoration">
+                        <div class="heartbeat-line"></div>
+                    </div>
+                </div>
+
+                <!-- Lives Saved Estimate -->
+                <div class="stats-card secondary-stat">
+                    <div class="stat-icon">💓</div>
+                    <div class="stat-content">
+                        <h3 class="stat-label">Potential Lives Saved</h3>
+                        <div class="stat-number-container">
+                            <span class="stat-number lives-number" id="livesSaved">0</span>
+                            <span class="stat-unit">lives</span>
+                        </div>
+                        <p class="stat-subtext">Each unit can save up to 3 lives</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Last Updated -->
+            <div class="last-updated">
+                <span class="update-icon">🔄</span>
+                <span id="lastUpdated">Last updated: --</span>
+            </div>
+        </main>
+
+        <!-- Slogans Section -->
+        <section class="slogans-section">
+            <h2 class="slogans-title">Spread Awareness</h2>
+            <div class="slogans-carousel">
+                <div class="slogan-card active" id="slogan1">
+                    <div class="slogan-icon">💉</div>
+                    <p class="slogan-text">"A single drop of blood can save a life"</p>
+                </div>
+                <div class="slogan-card" id="slogan2">
+                    <div class="slogan-icon">❤️</div>
+                    <p class="slogan-text">"Donate blood, spread hope"</p>
+                </div>
+                <div class="slogan-card" id="slogan3">
+                    <div class="slogan-icon">🦸</div>
+                    <p class="slogan-text">"Be someone's hero today"</p>
+                </div>
+                <div class="slogan-card" id="slogan4">
+                    <div class="slogan-icon">🌟</div>
+                    <p class="slogan-text">"Give the gift of life"</p>
+                </div>
+                <div class="slogan-card" id="slogan5">
+                    <div class="slogan-icon">🤝</div>
+                    <p class="slogan-text">"Blood connects us all"</p>
+                </div>
+            </div>
+            <div class="slogan-indicators" id="sloganIndicators">
+                <span class="indicator active" data-index="0"></span>
+                <span class="indicator" data-index="1"></span>
+                <span class="indicator" data-index="2"></span>
+                <span class="indicator" data-index="3"></span>
+                <span class="indicator" data-index="4"></span>
+            </div>
+        </section>
+
+        <!-- Recent Donors -->
+        <section class="recent-donors-section">
+            <h2 class="section-title">Recent Heroes</h2>
+            <div class="donors-list" id="donorsList">
+                <!-- Donors will be populated by JavaScript (names only) -->
+                <div class="loading-donors">Loading recent donors...</div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer dashboard-footer">
+            <p class="footer-message">Together, we can make a difference!</p>
+            <p class="copyright">© 2026 Blood Donation Drive. All rights reserved.</p>
+        </footer>
+    </div>
+
+    <!-- Thank You Popup Overlay -->
+    <div class="thank-you-overlay" id="thankYouOverlay">
+        <!-- Background Animation -->
+        <div class="bg-animation">
+            <div class="blood-drop drop-1"></div>
+            <div class="blood-drop drop-2"></div>
+            <div class="blood-drop drop-3"></div>
+            <div class="blood-drop drop-4"></div>
+        </div>
+
+        <!-- Floating Hearts Animation -->
+        <div class="floating-hearts">
+            <span class="heart h1">❤️</span>
+            <span class="heart h2">💗</span>
+            <span class="heart h3">❤️</span>
+            <span class="heart h4">💓</span>
+            <span class="heart h5">❤️</span>
+        </div>
+
+        <!-- Thank You Card -->
+        <div class="thank-you-card">
+            <!-- Animated Heart -->
+            <div class="big-heart pulse-strong">❤️</div>
+
+            <!-- Thank You Message -->
+            <h1 class="thank-you-title">Thank You for Donating Blood!</h1>
+            
+            <!-- Donor Info -->
+            <div class="donor-info">
+                <div class="donor-detail">
+                    <span class="detail-label">Donor Name</span>
+                    <span class="detail-value" id="overlayDonorName">--</span>
+                </div>
+                <div class="donor-detail blood-group-display">
+                    <span class="detail-label">Blood Group</span>
+                    <span class="detail-value blood-badge" id="overlayBloodGroup">--</span>
+                </div>
+            </div>
+
+            <!-- Appreciation Message -->
+            <div class="appreciation-message">
+                <p>Your generous donation can save up to <strong>3 lives</strong>!</p>
+                <p>You are a true hero. 🦸‍♂️</p>
+            </div>
+
+            <!-- Quote -->
+            <div class="quote-section">
+                <p class="quote">"The blood you donate gives someone another chance at life."</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js?v=8"></script>
+</body>
+</html>
