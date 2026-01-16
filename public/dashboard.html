@@ -6,168 +6,230 @@
     <title>Dashboard | Blood Donation Drive</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="dashboard.css">
 </head>
-<body class="dashboard-page">
-    <!-- Background Animation -->
-    <div class="bg-animation">
-        <div class="blood-drop drop-1"></div>
-        <div class="blood-drop drop-2"></div>
-        <div class="blood-drop drop-3"></div>
+<body>
+    <!-- Animated Background -->
+    <div class="dashboard-bg">
+        <div class="bg-gradient"></div>
+        <div class="bg-pattern"></div>
+        <div class="floating-shapes">
+            <div class="shape shape-1"></div>
+            <div class="shape shape-2"></div>
+            <div class="shape shape-3"></div>
+        </div>
     </div>
 
-    <!-- Main Container -->
-    <div class="container dashboard-container">
+    <!-- Main Dashboard -->
+    <div class="dashboard-wrapper">
         <!-- Header -->
         <header class="dashboard-header">
-            <div class="logo">
-                <div class="heart-icon pulse">❤️</div>
-                <h1>Blood Donation Dashboard</h1>
+            <div class="header-content">
+                <div class="brand">
+                    <div class="brand-icon">
+                        <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M24 44C24 44 6 28 6 16C6 10 10.5 4 18 4C22 4 24 7 24 7C24 7 26 4 30 4C37.5 4 42 10 42 16C42 28 24 44 24 44Z" fill="url(#heartGrad)" stroke="#fff" stroke-width="2"/>
+                            <defs>
+                                <linearGradient id="heartGrad" x1="6" y1="4" x2="42" y2="44" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#FF4D6A"/>
+                                    <stop offset="1" stop-color="#DC143C"/>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+                    </div>
+                    <div class="brand-text">
+                        <h1>Blood Donation Drive</h1>
+                        <span class="brand-subtitle">Real-Time Statistics Dashboard</span>
+                    </div>
+                </div>
+                <div class="header-badge">
+                    <div class="live-indicator">
+                        <span class="live-dot"></span>
+                        <span>LIVE</span>
+                    </div>
+                </div>
             </div>
         </header>
 
-        <!-- Stats Section -->
-        <main class="stats-section">
-            <!-- Stats Row - Side by Side -->
-            <div class="stats-row">
-                <!-- Main Counter Card -->
-                <div class="stats-card main-stat">
-                    <div class="stat-content">
-                        <h2 class="stat-label">Total number of donor</h2>
-                        <div class="stat-number-container">
-                            <span class="blood-bag">🩸</span>
-                            <span class="stat-number large-counter" id="totalUnits">0</span>
+        <!-- Main Stats Section -->
+        <main class="dashboard-main">
+            <!-- Primary Stats Row -->
+            <div class="stats-grid">
+                <!-- Total Donors Card -->
+                <div class="stat-card primary-card">
+                    <div class="card-glow"></div>
+                    <div class="card-content">
+                        <div class="stat-header">
+                            <div class="stat-icon-wrapper">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M12 21C12 21 3 13.5 3 8.5C3 5.5 5.5 3 8.5 3C10.5 3 12 4.5 12 4.5C12 4.5 13.5 3 15.5 3C18.5 3 21 5.5 21 8.5C21 13.5 12 21 12 21Z" fill="currentColor"/>
+                                </svg>
+                            </div>
+                            <span class="stat-label">Total Donors</span>
                         </div>
-                    </div>
-                    <div class="stat-decoration">
-                        <div class="heartbeat-line"></div>
+                        <div class="stat-value-wrapper">
+                            <span class="stat-value" id="totalUnits">0</span>
+                            <span class="stat-suffix">donors</span>
+                        </div>
+                        <div class="stat-footer">
+                            <div class="heartbeat-animation">
+                                <svg viewBox="0 0 150 40" preserveAspectRatio="none">
+                                    <path class="heartbeat-path" d="M0,20 L20,20 L25,20 L30,5 L35,35 L40,15 L45,25 L50,20 L70,20 L75,20 L80,5 L85,35 L90,15 L95,25 L100,20 L120,20 L125,20 L130,5 L135,35 L140,15 L145,25 L150,20" stroke="currentColor" stroke-width="2" fill="none"/>
+                                </svg>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
-                <!-- Lives Saved Estimate -->
-                <div class="stats-card secondary-stat">
-                    <div class="stat-icon">💓</div>
-                    <div class="stat-content">
-                        <h3 class="stat-label">Potential Lives Saved</h3>
-                        <div class="stat-number-container">
-                            <span class="stat-number lives-number" id="livesSaved">0</span>
-                            <span class="stat-unit">lives</span>
+                <!-- Lives Saved Card -->
+                <div class="stat-card secondary-card">
+                    <div class="card-content">
+                        <div class="stat-header">
+                            <div class="stat-icon-wrapper lives-icon">
+                                <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M17 21V19C17 16.7909 15.2091 15 13 15H5C2.79086 15 1 16.7909 1 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+                                    <path d="M23 21V19C22.9986 17.1771 21.765 15.5857 20 15.13" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                    <path d="M16 3.13C17.7699 3.58317 19.0078 5.17799 19.0078 7.005C19.0078 8.83201 17.7699 10.4268 16 10.88" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                </svg>
+                            </div>
+                            <span class="stat-label">Potential Lives Saved</span>
                         </div>
-                        <p class="stat-subtext">Each unit can save up to 3 lives</p>
+                        <div class="stat-value-wrapper">
+                            <span class="stat-value lives-value" id="livesSaved">0</span>
+                            <span class="stat-suffix">lives</span>
+                        </div>
+                        <div class="stat-description">
+                            <svg class="info-icon" viewBox="0 0 16 16" fill="currentColor">
+                                <path d="M8 1a7 7 0 100 14A7 7 0 008 1zm0 2.5a1 1 0 110 2 1 1 0 010-2zM6.5 7h2v5h1v1h-3v-1h1V8h-1V7z"/>
+                            </svg>
+                            <span>Each donation can save up to 3 lives</span>
+                        </div>
                     </div>
                 </div>
             </div>
 
             <!-- Last Updated -->
-            <div class="last-updated">
-                <span class="update-icon">🔄</span>
-                <span id="lastUpdated">Last updated: --</span>
+            <div class="update-info">
+                <svg class="sync-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M23 4v6h-6M1 20v-6h6"/>
+                    <path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/>
+                </svg>
+                <span id="lastUpdated">Updating...</span>
             </div>
+
+            <!-- Awareness Section -->
+            <section class="awareness-section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/>
+                        </svg>
+                    </div>
+                    <h2>Spread Awareness</h2>
+                </div>
+                <div class="quotes-carousel">
+                    <div class="quote-track" id="quoteTrack">
+                        <div class="quote-slide active">
+                            <blockquote>"A single drop of blood can ignite a lifetime of hope"</blockquote>
+                        </div>
+                        <div class="quote-slide">
+                            <blockquote>"Donate blood, be the reason for someone's heartbeat"</blockquote>
+                        </div>
+                        <div class="quote-slide">
+                            <blockquote>"Be someone's hero — it only takes one hour"</blockquote>
+                        </div>
+                        <div class="quote-slide">
+                            <blockquote>"The gift of blood is the gift of life"</blockquote>
+                        </div>
+                        <div class="quote-slide">
+                            <blockquote>"Blood connects us all — share yours, save lives"</blockquote>
+                        </div>
+                    </div>
+                    <div class="carousel-indicators" id="carouselIndicators">
+                        <button class="indicator active" data-index="0" aria-label="Quote 1"></button>
+                        <button class="indicator" data-index="1" aria-label="Quote 2"></button>
+                        <button class="indicator" data-index="2" aria-label="Quote 3"></button>
+                        <button class="indicator" data-index="3" aria-label="Quote 4"></button>
+                        <button class="indicator" data-index="4" aria-label="Quote 5"></button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Recent Donors Section -->
+            <section class="donors-section">
+                <div class="section-header">
+                    <div class="section-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                        </svg>
+                    </div>
+                    <h2>Our Heroes</h2>
+                </div>
+                <div class="donors-grid" id="donorsList">
+                    <div class="loading-state">
+                        <div class="loading-spinner"></div>
+                        <span>Loading recent donors...</span>
+                    </div>
+                </div>
+            </section>
         </main>
 
-        <!-- Slogans Section -->
-        <section class="slogans-section">
-            <h2 class="slogans-title">Spread Awareness</h2>
-            <div class="slogans-carousel">
-                <div class="slogan-card active" id="slogan1">
-                    <div class="slogan-icon">💉</div>
-                    <p class="slogan-text">"A single drop of blood can save a life"</p>
-                </div>
-                <div class="slogan-card" id="slogan2">
-                    <div class="slogan-icon">❤️</div>
-                    <p class="slogan-text">"Donate blood, spread hope"</p>
-                </div>
-                <div class="slogan-card" id="slogan3">
-                    <div class="slogan-icon">🦸</div>
-                    <p class="slogan-text">"Be someone's hero today"</p>
-                </div>
-                <div class="slogan-card" id="slogan4">
-                    <div class="slogan-icon">🌟</div>
-                    <p class="slogan-text">"Give the gift of life"</p>
-                </div>
-                <div class="slogan-card" id="slogan5">
-                    <div class="slogan-icon">🤝</div>
-                    <p class="slogan-text">"Blood connects us all"</p>
-                </div>
-            </div>
-            <div class="slogan-indicators" id="sloganIndicators">
-                <span class="indicator active" data-index="0"></span>
-                <span class="indicator" data-index="1"></span>
-                <span class="indicator" data-index="2"></span>
-                <span class="indicator" data-index="3"></span>
-                <span class="indicator" data-index="4"></span>
-            </div>
-        </section>
-
-        <!-- Recent Donors -->
-        <section class="recent-donors-section">
-            <h2 class="section-title">Recent Heroes</h2>
-            <div class="donors-list" id="donorsList">
-                <!-- Donors will be populated by JavaScript (names only) -->
-                <div class="loading-donors">Loading recent donors...</div>
-            </div>
-        </section>
-
         <!-- Footer -->
-        <footer class="footer dashboard-footer">
-            <p class="footer-message">Together, we can make a difference!</p>
-            <p class="copyright">© 2026 Blood Donation Drive. All rights reserved.</p>
+        <footer class="dashboard-footer">
+            <div class="footer-content">
+                <p class="footer-message">Together, we can make a difference</p>
+                <div class="footer-divider"></div>
+                <p class="copyright">Blood Donation Drive 2026. All rights reserved.</p>
+            </div>
         </footer>
     </div>
 
-    <!-- Thank You Popup Overlay -->
+    <!-- Thank You Overlay -->
     <div class="thank-you-overlay" id="thankYouOverlay">
-        <!-- Background Animation -->
-        <div class="bg-animation">
-            <div class="blood-drop drop-1"></div>
-            <div class="blood-drop drop-2"></div>
-            <div class="blood-drop drop-3"></div>
-            <div class="blood-drop drop-4"></div>
-        </div>
-
-        <!-- Floating Hearts Animation -->
-        <div class="floating-hearts">
-            <span class="heart h1">❤️</span>
-            <span class="heart h2">💗</span>
-            <span class="heart h3">❤️</span>
-            <span class="heart h4">💓</span>
-            <span class="heart h5">❤️</span>
-        </div>
-
-        <!-- Thank You Card -->
-        <div class="thank-you-card">
-            <!-- Animated Heart -->
-            <div class="big-heart pulse-strong">❤️</div>
-
-            <!-- Thank You Message -->
-            <h1 class="thank-you-title">Thank You for Donating Blood!</h1>
-            
-            <!-- Donor Info -->
-            <div class="donor-info">
-                <div class="donor-detail">
+        <div class="overlay-backdrop"></div>
+        <div class="thank-you-modal">
+            <div class="modal-decoration">
+                <div class="pulse-ring"></div>
+                <div class="pulse-ring delay-1"></div>
+                <div class="pulse-ring delay-2"></div>
+            </div>
+            <div class="modal-icon">
+                <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M32 58C32 58 8 38 8 22C8 14 14 6 24 6C30 6 32 10 32 10C32 10 34 6 40 6C50 6 56 14 56 22C56 38 32 58 32 58Z" fill="url(#modalHeartGrad)"/>
+                    <defs>
+                        <linearGradient id="modalHeartGrad" x1="8" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse">
+                            <stop stop-color="#FF6B6B"/>
+                            <stop offset="1" stop-color="#DC143C"/>
+                        </linearGradient>
+                    </defs>
+                </svg>
+            </div>
+            <h1 class="modal-title">Thank You for Donating Blood!</h1>
+            <div class="donor-details">
+                <div class="detail-row">
                     <span class="detail-label">Donor Name</span>
-                    <span class="detail-value" id="overlayDonorName">--</span>
+                    <span class="detail-value" id="overlayDonorName">—</span>
                 </div>
-                <div class="donor-detail blood-group-display">
+                <div class="detail-row">
                     <span class="detail-label">Blood Group</span>
-                    <span class="detail-value blood-badge" id="overlayBloodGroup">--</span>
+                    <span class="detail-value blood-type" id="overlayBloodGroup">—</span>
                 </div>
             </div>
-
-            <!-- Appreciation Message -->
-            <div class="appreciation-message">
+            <div class="modal-message">
                 <p>Your generous donation can save up to <strong>3 lives</strong>!</p>
-                <p>You are a true hero. 🦸‍♂️</p>
+                <p class="hero-text">You are a true hero.</p>
             </div>
-
-            <!-- Quote -->
-            <div class="quote-section">
-                <p class="quote">"The blood you donate gives someone another chance at life."</p>
+            <div class="modal-quote">
+                <svg class="quote-icon" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"/>
+                </svg>
+                <p>The blood you donate gives someone another chance at life.</p>
             </div>
         </div>
     </div>
 
-    <script src="script.js?v=8"></script>
+    <script src="script.js?v=9"></script>
 </body>
 </html>

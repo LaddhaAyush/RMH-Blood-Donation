@@ -410,7 +410,7 @@ function initDashboard() {
      */
     async function fetchRecentDonors() {
         try {
-            const response = await apiRequest('/api/donors?limit=5');
+            const response = await apiRequest('/api/donors?limit=8');
             const donors = response.data;
 
             if (donors.length === 0) {
@@ -419,14 +419,15 @@ function initDashboard() {
             }
 
             donorsListEl.innerHTML = donors.map((donor, index) => `
-                <div class="donor-item" style="animation-delay: ${index * 0.1}s">
+                <div class="donor-chip" style="animation-delay: ${index * 0.08}s">
                     <span class="donor-name">${escapeHtml(donor.fullName)}</span>
+                    <span class="blood-badge">${escapeHtml(donor.bloodGroup)}</span>
                 </div>
             `).join('');
 
         } catch (error) {
             console.error('Failed to fetch donors:', error);
-            donorsListEl.innerHTML = '<p class="loading-donors">Failed to load donors</p>';
+            donorsListEl.innerHTML = '<p class="loading-state">Failed to load donors</p>';
         }
     }
 
@@ -454,46 +455,43 @@ function initDashboard() {
 }
 
 /**
- * Initializes the slogans carousel
+ * Initializes the quotes carousel (dashboard)
  */
 function initSlogansCarousel() {
-    const slogans = document.querySelectorAll('.slogan-card');
-    const indicators = document.querySelectorAll('.indicator');
+    const quotes = document.querySelectorAll('.quote-slide');
+    const indicators = document.querySelectorAll('.carousel-indicators .indicator');
 
-    if (slogans.length === 0) return;
+    if (quotes.length === 0) return;
 
     let currentIndex = 0;
 
-    function showSlogan(index) {
+    function showQuote(index) {
         // Remove active class from all
-        slogans.forEach(slogan => {
-            slogan.classList.remove('active', 'exit');
+        quotes.forEach(quote => {
+            quote.classList.remove('active');
         });
         indicators.forEach(ind => ind.classList.remove('active'));
 
-        // Exit current slogan
-        if (slogans[currentIndex]) {
-            slogans[currentIndex].classList.add('exit');
-        }
-
-        // Show new slogan
+        // Show new quote
         currentIndex = index;
-        slogans[currentIndex].classList.add('active');
-        indicators[currentIndex].classList.add('active');
+        quotes[currentIndex].classList.add('active');
+        if (indicators[currentIndex]) {
+            indicators[currentIndex].classList.add('active');
+        }
     }
 
-    function nextSlogan() {
-        const nextIndex = (currentIndex + 1) % slogans.length;
-        showSlogan(nextIndex);
+    function nextQuote() {
+        const nextIndex = (currentIndex + 1) % quotes.length;
+        showQuote(nextIndex);
     }
 
-    // Auto-rotate slogans
-    setInterval(nextSlogan, CONFIG.SLOGAN_INTERVAL);
+    // Auto-rotate quotes
+    setInterval(nextQuote, CONFIG.SLOGAN_INTERVAL);
 
     // Click on indicators
     indicators.forEach((indicator, index) => {
         indicator.addEventListener('click', () => {
-            showSlogan(index);
+            showQuote(index);
         });
     });
 }

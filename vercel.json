@@ -24,7 +24,7 @@
       "dest": "/public/thankyou.html"
     },
     {
-      "src": "/(.*\\.(js|css|ico|png|jpg|jpeg|svg|gif))",
+      "src": "/(.*\\.(js|css|ico|png|jpg|jpeg|svg|gif|woff|woff2))",
       "dest": "/public/$1"
     },
     {
