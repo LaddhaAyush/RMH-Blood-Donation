@@ -34,5 +34,9 @@ temp/
 # MongoDB data (if local)
 data/
 
-# Package lock (optional - some prefer to commit this)
+# Vercel
+.vercel
+
+# Package lock (commit this for production)
+# Uncomment below if you want to ignore it
 # package-lock.json

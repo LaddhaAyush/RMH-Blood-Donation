@@ -10,8 +10,8 @@ const statsSchema = new mongoose.Schema({
     // Identifier for the stats document (always 'global')
     identifier: {
         type: String,
-        default: 'global',
-        unique: true
+        default: 'global'
+        // Removed 'unique: true' to avoid duplicate with schema.index below
     },
     // Total number of blood units collected
     totalBloodUnits: {
@@ -25,6 +25,9 @@ const statsSchema = new mongoose.Schema({
         default: Date.now
     }
 });
+
+// Ensure unique index on identifier
+statsSchema.index({ identifier: 1 }, { unique: true });
 
 /**
  * Static method to get the current stats

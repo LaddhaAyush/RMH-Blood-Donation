@@ -105,12 +105,45 @@ blood-donation-project/
 
 ## ⚙️ Environment Variables
 
-Create a `.env` file in the root directory (optional):
+Create a `.env` file in the root directory:
 
 ```env
 PORT=3000
-MONGODB_URI=mongodb://localhost:27017/blood_donation
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/blood_donation?retryWrites=true&w=majority
 ```
+
+**For Vercel Deployment:**
+- Add `MONGODB_URI` in Vercel Project Settings → Environment Variables
+- Never commit `.env` to version control
+
+## 🚀 Deployment on Vercel
+
+1. **Install Vercel CLI** (optional)
+   ```bash
+   npm i -g vercel
+   ```
+
+2. **Deploy**
+   ```bash
+   vercel
+   ```
+
+3. **Set Environment Variables** in Vercel Dashboard:
+   - Go to Project Settings → Environment Variables
+   - Add: `MONGODB_URI` with your MongoDB Atlas connection string
+
+4. **MongoDB Atlas Setup:**
+   - Whitelist Vercel IPs or allow access from anywhere (`0.0.0.0/0`)
+   - Create database user with read/write permissions
+
+## 🔧 Optimizations Applied
+
+- **Connection Pooling**: Reuses DB connections in serverless
+- **Cached Connections**: Reduces cold start latency
+- **Database Indexes**: Optimized queries on `donatedAt` and `bloodGroup`
+- **Error Handling**: Comprehensive error logging and user-friendly messages
+- **Validation**: Server-side and client-side validation
+- **Serverless Ready**: Works on Vercel, AWS Lambda, etc.
 
 ## 🤝 Contributing
 

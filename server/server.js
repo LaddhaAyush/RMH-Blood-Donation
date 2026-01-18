@@ -37,23 +37,42 @@ app.use(express.urlencoded({ extended: true }));
 // Serve static files from public directory
 app.use(express.static(path.join(__dirname, '../public')));
 
+// Global DB connection cache for serverless
+let cachedDb = null;
+
 /**
- * Connect to MongoDB
+ * Connect to MongoDB with connection pooling
  */
 async function connectDB() {
+    // Use cached connection in serverless environment
+    if (cachedDb && mongoose.connection.readyState === 1) {
+        console.log('✅ Using cached MongoDB connection');
+        return cachedDb;
+    }
+
     try {
-        await mongoose.connect(MONGODB_URI);
+        // Mongoose connection options optimized for Atlas
+        await mongoose.connect(MONGODB_URI, {
+            maxPoolSize: 10,
+            serverSelectionTimeoutMS: 5000,
+            socketTimeoutMS: 45000,
+        });
+        
+        cachedDb = mongoose.connection;
         console.log('✅ Connected to MongoDB successfully');
         
         // Initialize stats document if it doesn't exist
         await Stats.getStats();
         console.log('✅ Stats collection initialized');
+        
+        return cachedDb;
     } catch (error) {
         console.error('❌ MongoDB connection error:', error && error.stack ? error.stack : error);
         // Don't unconditionally exit when running in serverless environments
         if (require.main === module) {
             process.exit(1);
         }
+        throw error;
     }
 }
 
@@ -67,6 +86,9 @@ async function connectDB() {
  */
 app.post('/api/donate', async (req, res) => {
     try {
+        // Ensure DB connection in serverless environment
+        await connectDB();
+        
         const { fullName, bloodGroup, age, year } = req.body;
 
         // Server-side validation
@@ -83,6 +105,12 @@ app.post('/api/donate', async (req, res) => {
             return res.status(400).json({
                 success: false,
                 message: 'Donor must be at least 18 years old'
+            });
+        }
+        if (ageNum > 65) {
+            return res.status(400).json({
+                success: false,
+                message: 'Maximum age for donation is 65 years'
             });
         }
 
@@ -157,6 +185,9 @@ app.post('/api/donate', async (req, res) => {
  */
 app.get('/api/stats', async (req, res) => {
     try {
+        // Ensure DB connection in serverless environment
+        await connectDB();
+        
         const stats = await Stats.getStats();
         
         res.json({
@@ -209,6 +240,9 @@ app.post('/api/sync-stats', async (req, res) => {
  */
 app.get('/api/donors', async (req, res) => {
     try {
+        // Ensure DB connection in serverless environment
+        await connectDB();
+        
         const limit = parseInt(req.query.limit) || 10;
         const donors = await Donor.find()
             .select('fullName bloodGroup donatedAt')

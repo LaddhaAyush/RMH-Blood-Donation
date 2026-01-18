@@ -45,4 +45,8 @@ const donorSchema = new mongoose.Schema({
     }
 });
 
+// Add indexes for better query performance
+donorSchema.index({ donatedAt: -1 }); // For sorting recent donors
+donorSchema.index({ bloodGroup: 1 }); // For filtering by blood group
+
 module.exports = mongoose.model('Donor', donorSchema);
