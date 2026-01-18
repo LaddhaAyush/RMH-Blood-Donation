@@ -9,6 +9,14 @@ const cors = require('cors');
 // Load environment variables from .env
 require('dotenv').config();
 const path = require('path');
+// Serverless adapter for platforms like Vercel
+let serverless;
+try {
+    serverless = require('serverless-http');
+} catch (err) {
+    // Will attempt to require at runtime; if not installed it's fine for local runs
+    serverless = null;
+}
 
 // Import models
 const Donor = require('./models/Donor');
@@ -41,8 +49,11 @@ async function connectDB() {
         await Stats.getStats();
         console.log('✅ Stats collection initialized');
     } catch (error) {
-        console.error('❌ MongoDB connection error:', error.message);
-        process.exit(1);
+        console.error('❌ MongoDB connection error:', error && error.stack ? error.stack : error);
+        // Don't unconditionally exit when running in serverless environments
+        if (require.main === module) {
+            process.exit(1);
+        }
     }
 }
 
@@ -269,4 +280,19 @@ async function startServer() {
     });
 }
 
-startServer();
+// If run directly (node server/server.js), start the HTTP server.
+// If required as a module by a serverless platform (like Vercel), export the handler instead.
+if (require.main === module) {
+    startServer();
+} else {
+    // Try to connect DB early to reduce cold-start latency; don't crash if it fails here.
+    connectDB().catch(err => console.error('DB connect error during module init', err));
+
+    // Export serverless handler if serverless adapter is available
+    if (serverless) {
+        module.exports.handler = serverless(app);
+    } else {
+        // Fallback: export app (useful for some adapters/tests)
+        module.exports.app = app;
+    }
+}
