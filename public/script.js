@@ -34,7 +34,23 @@ async function apiRequest(endpoint, options = {}) {
             ...options
         });
 
-        const data = await response.json();
+        // Read raw response text first so we can handle non-JSON error pages
+        const text = await response.text();
+
+        // Try to parse JSON, but fall back to raw text for debugging
+        let data = null;
+        try {
+            data = text ? JSON.parse(text) : {};
+        } catch (err) {
+            // Not valid JSON (server returned HTML or plain text). Keep raw text in dataForError
+            const dataForError = text || 'Server returned a non-JSON response';
+            if (!response.ok) {
+                console.error('Non-JSON error response from server:', dataForError);
+                throw new Error(dataForError);
+            }
+            // If response.ok but not JSON, return raw text as data
+            return text;
+        }
 
         if (!response.ok) {
             throw new Error(data.message || 'Request failed');

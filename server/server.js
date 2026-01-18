@@ -121,7 +121,7 @@ app.post('/api/donate', async (req, res) => {
         });
 
     } catch (error) {
-        console.error('Error registering donor:', error);
+        console.error('Error registering donor:', error && error.stack ? error.stack : error);
         
         // Handle mongoose validation errors
         if (error.name === 'ValidationError') {
@@ -132,9 +132,10 @@ app.post('/api/donate', async (req, res) => {
             });
         }
 
+        // Return error message to client for debugging (in production, avoid exposing internal errors)
         res.status(500).json({
             success: false,
-            message: 'Server error. Please try again later.'
+            message: error.message || 'Server error. Please try again later.'
         });
     }
 });
