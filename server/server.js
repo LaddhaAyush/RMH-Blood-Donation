@@ -303,7 +303,7 @@ app.use((err, req, res, next) => {
 async function startServer() {
     await connectDB();
     
-    app.listen(PORT, () => {
+    const server = app.listen(PORT, () => {
         console.log('========================================');
         console.log('🩸 Blood Donation Event Website');
         console.log('========================================');
@@ -311,6 +311,28 @@ async function startServer() {
         console.log(`📝 Registration: http://localhost:${PORT}/`);
         console.log(`📊 Dashboard: http://localhost:${PORT}/dashboard`);
         console.log('========================================');
+    });
+
+    // Graceful error handling for listen errors (e.g., EADDRINUSE)
+    server.on('error', (err) => {
+        if (err && err.code === 'EADDRINUSE') {
+            console.error(`Port ${PORT} is already in use. Please stop the process using it or set a different PORT.`);
+            process.exit(1);
+        }
+
+        console.error('Server error:', err);
+        process.exit(1);
+    });
+
+    // Handle termination signals to close server and DB connection gracefully
+    process.on('SIGTERM', () => {
+        console.info('SIGTERM received: closing server');
+        server.close(() => {
+            mongoose.connection.close(false, () => {
+                console.log('MongoDB connection closed');
+                process.exit(0);
+            });
+        });
     });
 }
 
