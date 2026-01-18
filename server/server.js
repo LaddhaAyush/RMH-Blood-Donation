@@ -288,11 +288,11 @@ if (require.main === module) {
     // Try to connect DB early to reduce cold-start latency; don't crash if it fails here.
     connectDB().catch(err => console.error('DB connect error during module init', err));
 
-    // Export serverless handler if serverless adapter is available
+    // Export serverless handler - Vercel expects default export
     if (serverless) {
-        module.exports.handler = serverless(app);
+        module.exports = serverless(app);
     } else {
         // Fallback: export app (useful for some adapters/tests)
-        module.exports.app = app;
+        module.exports = app;
     }
 }
