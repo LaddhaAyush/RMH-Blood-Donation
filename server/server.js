@@ -6,6 +6,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+// Load environment variables from .env
+require('dotenv').config();
 const path = require('path');
 
 // Import models
